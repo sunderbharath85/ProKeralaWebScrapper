@@ -1,6 +1,6 @@
 ﻿namespace ProKeralaWebScrapperApp
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -36,9 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtFileName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.yearComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.monthComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.locationComboBox = new System.Windows.Forms.ComboBox();
             this.btnExport = new System.Windows.Forms.Button();
@@ -47,6 +45,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.logBox = new System.Windows.Forms.ListBox();
+            this.startDate = new System.Windows.Forms.DateTimePicker();
+            this.endDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -63,12 +63,12 @@
             this.txtPath.Location = new System.Drawing.Point(12, 31);
             this.txtPath.Name = "txtPath";
             this.txtPath.ReadOnly = true;
-            this.txtPath.Size = new System.Drawing.Size(282, 23);
+            this.txtPath.Size = new System.Drawing.Size(324, 23);
             this.txtPath.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(300, 31);
+            this.button1.Location = new System.Drawing.Point(342, 31);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -89,7 +89,7 @@
             // 
             this.txtFileName.Location = new System.Drawing.Point(11, 77);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(364, 23);
+            this.txtFileName.Size = new System.Drawing.Size(406, 23);
             this.txtFileName.TabIndex = 4;
             // 
             // label3
@@ -97,37 +97,18 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(13, 103);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 15);
+            this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Year";
-            // 
-            // yearComboBox
-            // 
-            this.yearComboBox.DropDownWidth = 154;
-            this.yearComboBox.FormattingEnabled = true;
-            this.yearComboBox.Location = new System.Drawing.Point(13, 121);
-            this.yearComboBox.Name = "yearComboBox";
-            this.yearComboBox.Size = new System.Drawing.Size(174, 23);
-            this.yearComboBox.TabIndex = 6;
-            this.yearComboBox.SelectedIndexChanged += new System.EventHandler(this.yearComboBox_SelectedIndexChanged);
+            this.label3.Text = "Start Date";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(221, 103);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 15);
+            this.label4.Size = new System.Drawing.Size(54, 15);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Month";
-            // 
-            // monthComboBox
-            // 
-            this.monthComboBox.FormattingEnabled = true;
-            this.monthComboBox.Location = new System.Drawing.Point(201, 121);
-            this.monthComboBox.Name = "monthComboBox";
-            this.monthComboBox.Size = new System.Drawing.Size(174, 23);
-            this.monthComboBox.TabIndex = 8;
-            this.monthComboBox.SelectedIndexChanged += new System.EventHandler(this.monthComboBox_SelectedIndexChanged);
+            this.label4.Text = "End Date";
             // 
             // label5
             // 
@@ -143,14 +124,14 @@
             this.locationComboBox.FormattingEnabled = true;
             this.locationComboBox.Location = new System.Drawing.Point(11, 165);
             this.locationComboBox.Name = "locationComboBox";
-            this.locationComboBox.Size = new System.Drawing.Size(364, 23);
+            this.locationComboBox.Size = new System.Drawing.Size(406, 23);
             this.locationComboBox.TabIndex = 10;
             // 
             // btnExport
             // 
             this.btnExport.Location = new System.Drawing.Point(11, 194);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(364, 23);
+            this.btnExport.Size = new System.Drawing.Size(406, 23);
             this.btnExport.TabIndex = 11;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
@@ -160,13 +141,13 @@
             // 
             this.progressBar.Location = new System.Drawing.Point(13, 223);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(362, 23);
+            this.progressBar.Size = new System.Drawing.Size(404, 23);
             this.progressBar.TabIndex = 12;
             // 
             // timeSpanComboBox
             // 
             this.timeSpanComboBox.FormattingEnabled = true;
-            this.timeSpanComboBox.Location = new System.Drawing.Point(254, 459);
+            this.timeSpanComboBox.Location = new System.Drawing.Point(291, 466);
             this.timeSpanComboBox.Name = "timeSpanComboBox";
             this.timeSpanComboBox.Size = new System.Drawing.Size(121, 23);
             this.timeSpanComboBox.TabIndex = 14;
@@ -174,7 +155,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(256, 441);
+            this.label6.Location = new System.Drawing.Point(293, 448);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(124, 15);
             this.label6.TabIndex = 15;
@@ -194,16 +175,34 @@
             this.logBox.Location = new System.Drawing.Point(11, 239);
             this.logBox.Margin = new System.Windows.Forms.Padding(10);
             this.logBox.Name = "logBox";
-            this.logBox.Size = new System.Drawing.Size(364, 199);
+            this.logBox.Size = new System.Drawing.Size(406, 199);
             this.logBox.TabIndex = 16;
             this.logBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.logBox_DrawItem);
             this.logBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.logBox_MeasureItem);
             // 
-            // Form1
+            // startDate
+            // 
+            this.startDate.Location = new System.Drawing.Point(11, 121);
+            this.startDate.Name = "startDate";
+            this.startDate.Size = new System.Drawing.Size(200, 23);
+            this.startDate.TabIndex = 6;
+            this.startDate.ValueChanged += new System.EventHandler(this.startDate_ValueChanged);
+            // 
+            // endDate
+            // 
+            this.endDate.Location = new System.Drawing.Point(217, 121);
+            this.endDate.Name = "endDate";
+            this.endDate.Size = new System.Drawing.Size(200, 23);
+            this.endDate.TabIndex = 8;
+            this.endDate.ValueChanged += new System.EventHandler(this.endDate_ValueChanged);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 497);
+            this.ClientSize = new System.Drawing.Size(441, 497);
+            this.Controls.Add(this.endDate);
+            this.Controls.Add(this.startDate);
             this.Controls.Add(this.logBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.timeSpanComboBox);
@@ -211,9 +210,7 @@
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.locationComboBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.monthComboBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.yearComboBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.label2);
@@ -222,7 +219,7 @@
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "ProKerala Web Scrapper App";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -238,9 +235,7 @@
         private Label label2;
         private TextBox txtFileName;
         private Label label3;
-        private ComboBox yearComboBox;
         private Label label4;
-        private ComboBox monthComboBox;
         private Label label5;
         private ComboBox locationComboBox;
         private Button btnExport;
@@ -249,5 +244,7 @@
         private Label label6;
         private System.Windows.Forms.Timer timer1;
         private ListBox logBox;
+        private DateTimePicker startDate;
+        private DateTimePicker endDate;
     }
 }

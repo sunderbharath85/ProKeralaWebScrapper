@@ -17,6 +17,7 @@ namespace ProKeralaWebScrapperApp
         {
             var timeSpans = new List<TimeSpan>()
             {
+                new TimeSpan() { displayMS = "Random", durationMS = -1},
                 new TimeSpan() { displayMS = "0 Secs", durationMS = 0},
                 new TimeSpan() { displayMS = "3 Secs", durationMS = 3},
                 new TimeSpan() { displayMS = "5 Secs", durationMS = 5},

@@ -6,10 +6,17 @@ namespace ProKeralaWebScrapperApp
 {
     public static class ExportHelper
     {
+        public static List<DateTime> GetDatesBetween(DateTime startDate, DateTime endDate)
+        {
+            List<DateTime> allDates = new List<DateTime>();
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+                allDates.Add(date);
+            return allDates;
+
+        }
         public static async Task ExportPanchangData(
-            string year, 
-            string month, 
-            int monthIndex, 
+            DateTime startDateTime,
+            DateTime endDateTime,
             string fileName, 
             string fileLocation, 
             Location location, 
@@ -19,29 +26,31 @@ namespace ProKeralaWebScrapperApp
         {
             List<FlatDay> list = new List<FlatDay>();
 
-            var days = DateTime.DaysInMonth(int.Parse(year), monthIndex);
+            var dates = GetDatesBetween(startDateTime, endDateTime);
             
-            for (int i = 0; i < days; i++)
+            for (int i = 0; i < dates.Count(); i++)
             {
                 try
                 {
                     int dIndex = (i + 1);
+                    DateTime currentDate = dates[i];
                     string day = i < 9 ? $"0{dIndex}" : $"{dIndex}";
-                    string date = $"{year}-{month.ToLower()}-{day}";
+                    string date = $"{currentDate.Year}-{currentDate.ToString("MMMM").ToLower()}-{currentDate.ToString("dd")}";
                     logger.info($"Getting data for {date}\n\r" + Environment.NewLine);
                     var url = $"https://www.prokerala.com/astrology/telugu-panchangam/{date}.html?loc={location.locationCode}";
                     HttpClient client = new HttpClient();
                     var response = client.GetStringAsync(url).Result;
                     var faltDay = parseHtml(response);
-                    faltDay.gregorianDate = $"{day}-{month.ToLower()}-{year}";
+                    faltDay.gregorianDate = currentDate.ToString("dd-MMMM-yyyy");
                     Console.ForegroundColor = ConsoleColor.Green;
                     logger.info($"flatten data for {date}\n\r" + Environment.NewLine);
                     list.Add(faltDay);
                     logger.info($"added data to list" + Environment.NewLine);
                     Console.ForegroundColor = ConsoleColor.White;
-                    logger.log($"Waiting for next day\n\r" + Environment.NewLine);
-                    progressBar.Value = (dIndex * 100) / days; ;
-                    Thread.Sleep(timeSpan * 1000);
+                    progressBar.Value = (dIndex * 100) / dates.Count();
+                    int newTimeSpan = timeSpan == -1 ? new Random().Next(11) : timeSpan;
+                    logger.log($"Waiting {newTimeSpan} seconds for next call\n\r" + Environment.NewLine);
+                    Thread.Sleep(newTimeSpan * 1000);
                 } catch (Exception ex)
                 {
                     logger.error(ex.Message + "\n\r" + Environment.NewLine);
