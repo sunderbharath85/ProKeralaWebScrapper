@@ -1,14 +1,28 @@
 using OfficeOpenXml;
 using System.Globalization;
+using System.Reflection;
 
-namespace ProKeralaWebScrapperApp
+namespace CalendarWebScrapperApp
 {
     public partial class MainForm : Form
     {
         private Logger logger;
 
+        public void initializeLocationsDropdown()
+        {
+            var locations = DataAccess.GetLocations();
+            locations.Add(new Location { LocationCode = "", LocationName = "New" });
+
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = locations;
+            locationComboBox.DataSource = bindingSource;
+            locationComboBox.DisplayMember = "LocationName";
+            locationComboBox.SelectedIndex = 0;
+        }
+
         public MainForm()
         {
+            DataAccess.InitializeDatabase();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             InitializeComponent();
             logBox.DrawMode = DrawMode.OwnerDrawVariable;
@@ -18,11 +32,7 @@ namespace ProKeralaWebScrapperApp
             startDate.Value = DateTime.Now;
             endDate.Value = DateTime.Now.AddDays(365);
 
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = new Location().GetLocations();
-            locationComboBox.DataSource = bindingSource;
-            locationComboBox.DisplayMember = "locationName";
-            locationComboBox.SelectedIndex = 0;
+            this.initializeLocationsDropdown();
 
             BindingSource timeSpanceBindingSource = new BindingSource();
             timeSpanceBindingSource.DataSource = new TimeSpan().GetTimeSpans();
@@ -30,9 +40,9 @@ namespace ProKeralaWebScrapperApp
             timeSpanComboBox.DisplayMember = "displayMS";
             timeSpanComboBox.SelectedIndex = 0;
 
-            txtPath.Text = Environment.CurrentDirectory;
+            txtPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            txtLocationCode.Enabled = false;
             updateFileName();
-
 
         }
 
@@ -110,6 +120,19 @@ namespace ProKeralaWebScrapperApp
             }
         }
 
+        private void locationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (locationComboBox.SelectedItem != null)
+            {
+                updateFileName();
+                txtLocationCode.Text = ((Location)locationComboBox.SelectedItem).LocationCode;
+                if (((Location)locationComboBox.SelectedItem).LocationName == "New")
+                {
+                    var form = new LocationForm(this);
+                    form.Show();
+                }
+            }
+        }
 
         #region form_helper
         private void enbaleComponents(bool isEnable)
@@ -125,9 +148,10 @@ namespace ProKeralaWebScrapperApp
 
         private void updateFileName()
         {
-            txtFileName.Text = ((Location)locationComboBox.SelectedItem).locationName + "-" + startDate.Value.ToString("dd-MMMM-yyyy") + "-" + endDate.Value.ToString("dd-MMMM-yyyy");
+            txtFileName.Text = ((Location)locationComboBox.SelectedItem).LocationName + "-" + startDate.Value.ToString("dd-MMMM-yyyy") + "-" + endDate.Value.ToString("dd-MMMM-yyyy");
         }
 
         #endregion
+
     }
 }

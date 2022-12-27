@@ -1,5 +1,5 @@
 ﻿
-namespace ProKeralaWebScrapperApp
+namespace CalendarWebScrapperApp
 {
     public class TimeSpan
     {

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProKeralaWebScrapper", "ProKeralaWebScrapper\ProKeralaWebScrapper.csproj", "{9D6B4E07-A5B7-4685-8F0B-CF58654F5169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalendarWebScrapper", "ProKeralaWebScrapper\CalendarWebScrapper.csproj", "{9D6B4E07-A5B7-4685-8F0B-CF58654F5169}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProKeralaWebScrapperApp", "ProKeralaWebScrapperApp\ProKeralaWebScrapperApp.csproj", "{C07D68C2-7E5C-4F05-8736-48738372CA29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalendarWebScrapperApp", "ProKeralaWebScrapperApp\CalendarWebScrapperApp.csproj", "{C07D68C2-7E5C-4F05-8736-48738372CA29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

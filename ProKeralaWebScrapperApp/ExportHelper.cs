@@ -2,7 +2,7 @@
 using System.Text;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
-namespace ProKeralaWebScrapperApp
+namespace CalendarWebScrapperApp
 {
     public static class ExportHelper
     {
@@ -37,7 +37,7 @@ namespace ProKeralaWebScrapperApp
                     string day = i < 9 ? $"0{dIndex}" : $"{dIndex}";
                     string date = $"{currentDate.Year}-{currentDate.ToString("MMMM").ToLower()}-{currentDate.ToString("dd")}";
                     logger.info($"Getting data for {date}\n\r" + Environment.NewLine);
-                    var url = $"https://www.prokerala.com/astrology/telugu-panchangam/{date}.html?loc={location.locationCode}";
+                    var url = $"https://www.prokerala.com/astrology/telugu-panchangam/{date}.html?loc={location.LocationCode}";
                     HttpClient client = new HttpClient();
                     var response = client.GetStringAsync(url).Result;
                     var faltDay = parseHtml(response);
@@ -51,7 +51,8 @@ namespace ProKeralaWebScrapperApp
                     int newTimeSpan = timeSpan == -1 ? new Random().Next(11) : timeSpan;
                     logger.log($"Waiting {newTimeSpan} seconds for next call\n\r" + Environment.NewLine);
                     Thread.Sleep(newTimeSpan * 1000);
-                } catch (Exception ex)
+                } 
+                catch (Exception ex)
                 {
                     logger.error(ex.Message + "\n\r" + Environment.NewLine);
                 }

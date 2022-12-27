@@ -1,4 +1,4 @@
-﻿namespace ProKeralaWebScrapperApp
+﻿namespace CalendarWebScrapperApp
 {
     partial class MainForm
     {
@@ -47,6 +47,8 @@
             this.logBox = new System.Windows.Forms.ListBox();
             this.startDate = new System.Windows.Forms.DateTimePicker();
             this.endDate = new System.Windows.Forms.DateTimePicker();
+            this.txtLocationCode = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -126,20 +128,21 @@
             this.locationComboBox.Name = "locationComboBox";
             this.locationComboBox.Size = new System.Drawing.Size(406, 23);
             this.locationComboBox.TabIndex = 10;
+            this.locationComboBox.SelectedIndexChanged += new System.EventHandler(this.locationComboBox_SelectedIndexChanged);
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(11, 194);
+            this.btnExport.Location = new System.Drawing.Point(11, 255);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(406, 23);
-            this.btnExport.TabIndex = 11;
+            this.btnExport.TabIndex = 12;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(13, 223);
+            this.progressBar.Location = new System.Drawing.Point(13, 284);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(404, 23);
             this.progressBar.TabIndex = 12;
@@ -147,7 +150,7 @@
             // timeSpanComboBox
             // 
             this.timeSpanComboBox.FormattingEnabled = true;
-            this.timeSpanComboBox.Location = new System.Drawing.Point(291, 466);
+            this.timeSpanComboBox.Location = new System.Drawing.Point(291, 547);
             this.timeSpanComboBox.Name = "timeSpanComboBox";
             this.timeSpanComboBox.Size = new System.Drawing.Size(121, 23);
             this.timeSpanComboBox.TabIndex = 14;
@@ -155,7 +158,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(293, 448);
+            this.label6.Location = new System.Drawing.Point(293, 529);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(124, 15);
             this.label6.TabIndex = 15;
@@ -172,7 +175,7 @@
             this.logBox.FormattingEnabled = true;
             this.logBox.HorizontalScrollbar = true;
             this.logBox.ItemHeight = 15;
-            this.logBox.Location = new System.Drawing.Point(11, 239);
+            this.logBox.Location = new System.Drawing.Point(13, 320);
             this.logBox.Margin = new System.Windows.Forms.Padding(10);
             this.logBox.Name = "logBox";
             this.logBox.Size = new System.Drawing.Size(406, 199);
@@ -196,11 +199,29 @@
             this.endDate.TabIndex = 8;
             this.endDate.ValueChanged += new System.EventHandler(this.endDate_ValueChanged);
             // 
+            // txtLocationCode
+            // 
+            this.txtLocationCode.Location = new System.Drawing.Point(11, 219);
+            this.txtLocationCode.Name = "txtLocationCode";
+            this.txtLocationCode.Size = new System.Drawing.Size(406, 23);
+            this.txtLocationCode.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 201);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 15);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Location Code";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 497);
+            this.ClientSize = new System.Drawing.Size(429, 575);
+            this.Controls.Add(this.txtLocationCode);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.endDate);
             this.Controls.Add(this.startDate);
             this.Controls.Add(this.logBox);
@@ -220,7 +241,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "ProKerala Web Scrapper App";
+            this.Text = "Calendar Web Scrapper";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,5 +267,7 @@
         private ListBox logBox;
         private DateTimePicker startDate;
         private DateTimePicker endDate;
+        private TextBox txtLocationCode;
+        private Label label7;
     }
 }

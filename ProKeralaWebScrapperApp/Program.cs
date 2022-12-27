@@ -1,4 +1,4 @@
-namespace ProKeralaWebScrapperApp
+namespace CalendarWebScrapperApp
 {
     internal static class Program
     {

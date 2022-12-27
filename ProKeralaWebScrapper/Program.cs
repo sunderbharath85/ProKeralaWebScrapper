@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace ProKeralaWebScrapper
+namespace CalendarWebScrapper
 {
     public class Program
     {
